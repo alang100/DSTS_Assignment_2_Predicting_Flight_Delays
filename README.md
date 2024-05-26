@@ -14,7 +14,7 @@ The dataset used for this project is a zip file of 60 zip files. Each of these 6
 1. A CSV file containing all the flight information in the US for a one-month period. This will contain several hundred thousand rows for each flight and 109 variables. Many of these variables are partially or mostly empty.
 2. A ‘readme.html’ file which consists of the field names and a brief description of them.
 The flight data for this project was made available at the following site. Permissions will be required to access it. The entire dataset is 1.5 GB in size, so it cannot be uploaded here.
-https://xxxxxx
+
 Similar data can be collected at the Bureau of Transportation Statistics at the following link:
 https://www.transtats.bts.gov/
 
