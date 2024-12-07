@@ -2,6 +2,7 @@
 
 ## DSTS Final Project
 
+
 This project consists of the following files:
 1. [Part A - onpremises.ipynb](Part%20A%20-%20Predicting%20Flight%20Delays.ipynb) code with output.
 2. [Part A - onpremises.html](Part%20A%20-%20Predicting%20Flight%20Delays.html) code with output as a HTML file.
@@ -9,7 +10,7 @@ This project consists of the following files:
 4. [Part B - oncloud.html](Part%20B%20-%20oncloud.html) output and report of the code run on AWS Sagemaker.
 5. [Flights Stats Tableau Dashboard](https://public.tableau.com/app/profile/alan.gaugler/viz/DSTS_2/Delays?publish=yes) highligthing several visualations of the flight data
 
-### Part A
+## Part A
 
 The dataset used for this project is a zip file of 60 zip files. Each of these 60 zip files contain flight data of US domestics flight for each month in the 5 year period from January 2014 to December 2018. Included are the following files:
 1. A CSV file containing all the flight information in the US for a one-month period. This will contain several hundred thousand rows for each flight and 109 variables. Many of these variables are partially or mostly empty.
