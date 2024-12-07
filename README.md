@@ -79,7 +79,6 @@ Both datasets had an imbalance in the target variable:
    - Each dataset was split into training (70%), validation (15%), and testing (15%) sets.  
    - Stratified sampling was used to preserve the distribution of the target variable across subsets, ensuring balanced representation of delayed and non-delayed flights.
 
----
 
 #### Model Building
 1. **Linear Learner Model:**  
@@ -92,7 +91,6 @@ Both datasets had an imbalance in the target variable:
    - Key hyperparameters included the number of boosting rounds (42) and the evaluation metric (AUC).  
    - The model was trained on the same data pipeline as the linear learner for consistency and comparability.
 
----
 
 #### Evaluation Metrics
 - Both models were evaluated using standard metrics, including:  
@@ -104,13 +102,10 @@ Both datasets had an imbalance in the target variable:
   - **AUC (Area Under the Curve):** Assesses the model’s ability to distinguish between the two classes.  
 - Confusion matrices and ROC curves were generated for visual analysis of the model’s predictions.
 
----
-
 #### Threshold Adjustment
 - The classification threshold, initially set at 0.5, was adjusted to 0.3 for the XGBoost model using Dataset v2.  
 - This adjustment aimed to improve recall for the minority class (delays) by predicting a higher proportion of flights as delayed. The trade-offs in accuracy, precision, and recall were carefully analyzed.
 
----
 
 #### Comparative Analysis
 - The performance of the models was compared across datasets (v1 and v2) and algorithms (linear learner vs. XGBoost).  
@@ -121,28 +116,27 @@ Both datasets had an imbalance in the target variable:
 ### Results
 
 #### Linear Learner Model (v1 Dataset)
-- **Accuracy**: 79.01%
-- **Recall for delays**: 0.13%
-- **F1-score**: 0.25%
-- **AUC**: 0.50
-- The model was biased towards the majority class ("No Delay"), failing to accurately predict delays.
+The linear learner model demonstrated significant limitations, achieving an accuracy of **79.01%**, which largely reflected the proportion of "No Delay" (majority class) instances in the dataset. The model struggled to identify delayed flights, with a recall of just **0.13%** for the delay class and an F1-score of **0.25%**, indicating poor balance between precision and recall. The AUC (Area Under the Curve) was **0.50**, suggesting that the model was no better than random guessing for this task.
+
 
 #### XGBoost Model
-- **Dataset v1**:
-  - **Accuracy**: 79.16%
-  - **Recall for delays**: 1.67%
-  - **F1-score**: 3.25%
-  - **AUC**: 0.51
-- **Dataset v2**:
-  - **Accuracy**: 80.27%
-  - **Recall for delays**: 11.97%
-  - **F1-score**: 20.29%
-  - **AUC**: 0.55
-- The inclusion of weather and holiday data significantly improved recall and overall predictive power.
+
+**Dataset v1:**  
+The XGBoost model outperformed the linear learner on the same dataset, achieving a slightly improved accuracy of **79.16%** and an F1-score of **3.25%**. It managed to predict more delayed flights, as indicated by an improved recall of **1.67%** and an AUC of **0.51**. However, these metrics still revealed a model biased toward the majority class, with significant room for improvement.
+
+**Dataset v2:**  
+The inclusion of weather and holiday data in Dataset v2 substantially improved the XGBoost model's performance. The accuracy increased to **80.27%**, and the model's ability to identify delays rose sharply, reflected in a recall of **11.97%** and an F1-score of **20.29%**. The AUC increased to **0.55**, highlighting the contribution of additional features to predictive accuracy.
+
 
 #### Threshold Adjustment for XGBoost (v2 Dataset)
-- Lowering the threshold to 0.3 improved recall for delays from 11.97% to **40.53%**, albeit at the cost of overall accuracy (**77.41%**) and precision (**45.70%**). 
-- The F1-score improved to **42.96%**, reflecting a better balance between precision and recall.
+Lowering the classification threshold from **0.5** to **0.3** resulted in a trade-off:
+
+- **Recall for delays** improved from **11.97%** to **40.53%**, significantly increasing the model's ability to identify delayed flights.  
+- This improvement came at the cost of overall accuracy (**77.41%**), precision (**45.70%**), and specificity (**87.21%**), as more flights were incorrectly classified as delayed.  
+- The F1-score improved to **42.96%**, showing a better balance between precision and recall, and the AUC rose to **0.64**, reflecting the model's enhanced ability to distinguish between delayed and non-delayed flights.
+
+These results illustrate the trade-offs involved in optimizing a model for business-specific needs, such as prioritizing recall over precision when identifying flight delays.
+
 
 ### Brief Conclusions
 
