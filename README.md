@@ -128,7 +128,7 @@ This project demonstrated the potential of machine learning in identifying fligh
 
 This project also provided me with excellent experience in utilizing AWS Sagemaker.
 
-#### Detailed Conclsuion
+### Detailed Conclsuion
 This is the more detailed conclusion that I wrote in the report.
 
 There are some notable differences between the linear and the ensemble methods. The linear model took fmore time to process than the XGBoost model, even though the pipeline is the same set up as the XGBoost model, apart from defining the model. I increased the mini batch size from 200 to 1000 and this improved the processing speed considerably withoout any loss in accuracy.
