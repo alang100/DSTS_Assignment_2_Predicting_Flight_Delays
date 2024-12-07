@@ -2,6 +2,13 @@
 
 ## DSTS Final Project
 
+This project focused on forecasting flight delays at major U.S. airports and was divided into two distinct phases:
+
+- **Part A**: Conducted using Python in Jupyter Notebooks, this phase involved data preprocessing, exploratory data analysis (EDA), and initial model development on a local machine. The emphasis was on understanding the dataset, creating features, and training baseline machine learning models.
+
+- **Part B**: Carried out on the AWS Cloud platform and its SageMaker service, a fully managed machine learning service that enables scalable model training and deployment. This phase focused on scaling the data and model workflows, training advanced models like XGBoost, and evaluating performance metrics. SageMaker's integration with cloud resources facilitated the efficient handling of large datasets and model optimization.
+
+By combining on-premises development with cloud-based solutions, the project showcased a comprehensive approach to solving real-world machine learning problems. The use of SageMaker enabled scalable model training, efficient resource utilization, and streamlined evaluation in a production-ready environment.
 
 This project consists of the following files:
 1. [Part A - onpremises.ipynb](Part%20A%20-%20Predicting%20Flight%20Delays.ipynb) code with output.
