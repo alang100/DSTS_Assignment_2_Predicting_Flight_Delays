@@ -4,8 +4,8 @@
 
 This project consists of the following files:
 1. Part A - onpremises.ipynb
-2. Part B - oncloud.ipynb # Note this is just the unrun code.
-3. Part B - oncloud.html
+2. Part B - oncloud.ipynb  
+3. [Part B - oncloud.html](Part%20B%20-%20oncloud.html)
 4. A tableau dashboard was made for this project which is available on the following link: https://public.tableau.com/app/profile/alan.gaugler/viz/DSTS_2/Delays?publish=yes
 
 ### Part A
@@ -50,7 +50,8 @@ This describes the instructions for running this code on other machines. It shou
 
 ## Summary Report of Part B: Using AWS Sagemaker to Predict Airplane Delays Using Machine Learning Techniques
 
-Provided here is a summary of the project for easy reference. Refer to the generated Part B - oncloud.html report for more details
+Provided here is a summary of the project for easy reference. Refer to the generated [Part B - oncloud.html](Part%20B%20-%20oncloud.html) report for more details.
+
 
 ### Objective
 The goal of Part B of this project was to build machine learning models to predict whether a flight would be delayed due to weather conditions. The focus was on flights departing from or arriving at the busiest domestic airports in the U.S., leveraging historical flight and weather data to enhance customer experience by providing delay predictions during flight bookings.
