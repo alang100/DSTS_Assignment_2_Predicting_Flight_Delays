@@ -65,23 +65,58 @@ Both datasets had an imbalance in the target variable:
 - 21% were "Delay" (class 1).
 
 ### Methodology
-The project was implemented in Amazon SageMaker using the following steps:
 
 #### Data Preparation
-- Loaded datasets and verified integrity.
-- Split the data into training (70%), validation (15%), and testing (15%) sets.
-- Stratified splits ensured balanced representation of the target variable across subsets.
+1. **Dataset Overview:**  
+   Two datasets were utilized:  
+   - **Dataset v1** contained core flight information, including flight schedules, distances, origins, destinations, and airlines.  
+   - **Dataset v2** extended Dataset v1 by incorporating additional features such as weather conditions (e.g., precipitation, wind speed, snowfall) and holiday indicators, which were hypothesized to improve the model’s predictive performance.
+
+2. **Data Loading and Integrity Verification:**  
+   The datasets were loaded and verified for integrity. Missing values were handled appropriately, and feature engineering was conducted to ensure compatibility with the machine learning models. Key transformations included ensuring that the target variable ("Delay" or "No Delay") was in the first column as required by certain algorithms.
+
+3. **Train-Test Split:**  
+   - Each dataset was split into training (70%), validation (15%), and testing (15%) sets.  
+   - Stratified sampling was used to preserve the distribution of the target variable across subsets, ensuring balanced representation of delayed and non-delayed flights.
+
+---
 
 #### Model Building
-- **Linear Learner Model**: Built a binary classification model using AWS's linear learner. The mini-batch size was increased to 1000 to improve training speed.
-- **XGBoost Model**: Developed an ensemble model optimized for binary classification with hyperparameters tuned for boosting rounds and evaluation using AUC.
+1. **Linear Learner Model:**  
+   - AWS's linear learner algorithm was used as a baseline binary classification model.  
+   - The mini-batch size was increased from 200 to 1000 to improve training efficiency without compromising accuracy.  
+   - The model’s hyperparameters were set to optimize binary classification tasks, and training outputs were stored in Amazon S3 for subsequent evaluation.
+
+2. **XGBoost Model:**  
+   - XGBoost, an ensemble learning method, was implemented for its ability to handle complex relationships in the data and its effectiveness in addressing class imbalances.  
+   - Key hyperparameters included the number of boosting rounds (42) and the evaluation metric (AUC).  
+   - The model was trained on the same data pipeline as the linear learner for consistency and comparability.
+
+---
 
 #### Evaluation Metrics
-- Accuracy, precision, recall, F1-score, specificity, and AUC (Area Under the Curve) metrics were calculated for model evaluation.
-- Confusion matrices and ROC curves were plotted to analyze performance.
+- Both models were evaluated using standard metrics, including:  
+  - **Accuracy:** Overall proportion of correct predictions.  
+  - **Precision:** Proportion of correctly identified delays out of all predicted delays.  
+  - **Recall (Sensitivity):** Proportion of actual delays correctly identified by the model.  
+  - **F1-score:** The harmonic mean of precision and recall, providing a balanced measure of the model’s performance.  
+  - **Specificity:** Proportion of correctly identified non-delays out of all non-delays.  
+  - **AUC (Area Under the Curve):** Assesses the model’s ability to distinguish between the two classes.  
+- Confusion matrices and ROC curves were generated for visual analysis of the model’s predictions.
+
+---
 
 #### Threshold Adjustment
-- The default classification threshold (0.5) was reduced to 0.3 for the XGBoost model to improve recall for the minority class (delays).
+- The classification threshold, initially set at 0.5, was adjusted to 0.3 for the XGBoost model using Dataset v2.  
+- This adjustment aimed to improve recall for the minority class (delays) by predicting a higher proportion of flights as delayed. The trade-offs in accuracy, precision, and recall were carefully analyzed.
+
+---
+
+#### Comparative Analysis
+- The performance of the models was compared across datasets (v1 and v2) and algorithms (linear learner vs. XGBoost).  
+- The impact of additional features in Dataset v2 and the effect of threshold adjustment on the XGBoost model’s predictive capability were thoroughly evaluated.  
+- The conclusions and recommendations were based on both quantitative metrics and the trade-offs observed during the evaluation process.
+
 
 ### Results
 
