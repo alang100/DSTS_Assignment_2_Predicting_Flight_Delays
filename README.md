@@ -109,7 +109,7 @@ The project was implemented in Amazon SageMaker using the following steps:
 - Lowering the threshold to 0.3 improved recall for delays from 11.97% to **40.53%**, albeit at the cost of overall accuracy (**77.41%**) and precision (**45.70%**). 
 - The F1-score improved to **42.96%**, reflecting a better balance between precision and recall.
 
-### Conclusions
+### Brief Conclusions
 
 #### Model Comparison
 - XGBoost outperformed the linear learner model in all key metrics, particularly for predicting the minority class ("Delay").
@@ -127,3 +127,26 @@ The project was implemented in Amazon SageMaker using the following steps:
 This project demonstrated the potential of machine learning in identifying flight delays due to weather conditions. While further improvements are necessary for real-world deployment, the insights gained establish a foundation for developing robust predictive tools for the airline industry. 
 
 This project also provided me with excellent experience in utilizing AWS Sagemaker.
+
+#### Detailed Conclsuion
+This is the more detailed conclusion that I wrote in the report.
+
+There are some notable differences between the linear and the ensemble methods. The linear model took fmore time to process than the XGBoost model, even though the pipeline is the same set up as the XGBoost model, apart from defining the model. I increased the mini batch size from 200 to 1000 and this improved the processing speed considerably withoout any loss in accuracy.
+
+The linear model had similar performance to the on-premises logistic regression model. In the confusion matrix, very few ‘Delay’ classes were predicted (neither correctly nor incorrectly). The overall accuracy was very close to 79% or the percentage of ‘No Delay’ values in the target variable, the recall was very low and the AUC in the ROC curve was very close to 0.5, which is not a good result.
+
+The ensemble XGBoost model performed considerably better than the linear learner on both datasets. The logical setting for the binary convert threshold is 0.5, which is what I set it too as default, meaning that if the output probability is less than 0.5 the predicted value is set to 0 or ‘no delay’. If it is greater than 0.5 then it is predicted as a 1 or a ‘delay’.
+
+At a setting of 0.5, the model using combined_csv_v2.csv dataset performed better than for dataset v1. As was explained in the on-premises notebook, the extra features incorporated in v2, i.e., the holidays and the weather data, in particular heavy snow, rain or winds combined well to improve the accuracy of the second model. This was reflected in the metrics of the two models.
+
+Model XGB_1 only predicted 859 Delays correctly, whereas XGB_2 predicted 6162, a significant improvement which is reflected in the improved recall, up from 1.67% to 11.97%. The overall accuracy and precision also improved slightly in the v2 dataset, as a result the specificity decline slightly from 99.74 to 98.41, but the overall measure, the F1-score increased significantly from 3.25% to 20.29%, a significant improvement. The AUC also had a good increase from 0.51 to 0.55. In spite of the improved metrics, I would consider this model to still be quite poor. In the classification report, The recall of the majority class is good at 98% but it is still poor for the monority class 'Delay' at 12%.
+
+Many improvements could be tried, given more time. I have mentioned those in the conclusion to the on-premises notebook, so I won’t repeat them here in detail. One simple option to improve the performance of both the linear learner and the XGBoost model is hyperparameter tuning in a grid-search. This would however increase processing time significantly. A session is limited to only 2 hours which is not enough time for a proper grid-search.
+
+As mentioned, another option in the on-premises solution is the binary convert threshold. As mentioned above, I set this to 0.5 which is the logical option. Looking at the last section of code, I change this to a setting of 0.3. This effectively predicts anything with a probability of greater than 0.3 as a 1 or a ‘delay’ class. This is manipulating the output data to increase the number of predictions of the minority class. Looking at the confusion matrices for a change in threshold from 0.5 to 0.3, the number of correctly predicted delays has increased starkly from 6162 to 20871, although this has come at a cost of fewer ‘no delays’ being correctly predicted, (190764 down to 169036). The overall accuracy has fallen from 80.27% to 77.41%, as has the precision (67.72% to 45.70%) and the specificity (98.41% to 87.21%), however the recall has risen sharply (11.97% to 40.53%) and the F1-score too (20.29% to 42.96%). The AUC in the ROC has also improved significantly from 0.55 to 0.64.
+
+Manipulating this threshold is a trade-off of Recall vs precision and overall accuracy. It depends on how critical predicting the minority class is. In this case flight delays of 15 minutes or more are not very critical in my opinion, compared to say detecting cancer in a patient. More investigation would have to be done in setting this threshold, determining its importance in the business model and deciding on the optimal setting.
+
+To conclude, the XGBoost is better than the linear learner (on-cloud) and the logistic regression models used in the on-premises notebook. It is better in all metrics over the other two models. The enhanced dataset of v2 with the added weather and holiday information also significantly improves the model’s accuracy in predicted flight delays.
+
+ 
