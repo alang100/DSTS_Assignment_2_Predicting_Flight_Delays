@@ -50,12 +50,14 @@ This describes the instructions for running this code on other machines. It shou
 
 ## Summary Report of Part B: Using AWS Sagemaker to Predict Airplane Delays Using Machine Learning Techniques
 
+Provided here is a summary of the project for easy reference. Refer to the generated Part B - oncloud.html report for more details
+
 ### Objective
 The goal of Part B of this project was to build machine learning models to predict whether a flight would be delayed due to weather conditions. The focus was on flights departing from or arriving at the busiest domestic airports in the U.S., leveraging historical flight and weather data to enhance customer experience by providing delay predictions during flight bookings.
 
 ### Dataset
 The dataset, provided by the Bureau of Transportation Statistics (BTS), consisted of detailed flight performance data for domestic U.S. flights from 2014 to 2018. The dataset contained features such as flight schedules, distances, origins, destinations, airlines, and weather information. Two combined datasets were created:
-- **Dataset v1**: Contained core flight details.
+- **Dataset v1**: Contained core flight details including schedules, distances, and airline information.
 - **Dataset v2**: Expanded dataset including additional weather and holiday information.
 
 Both datasets had an imbalance in the target variable:
