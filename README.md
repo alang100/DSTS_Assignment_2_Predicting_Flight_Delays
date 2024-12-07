@@ -66,79 +66,78 @@ Log into AWS.
 
 ---
 
-### Summary of Part B Report: Predicting Airplane Delays Using Machine Learning
-#### Project Objectives
-The goal of this project was to build machine learning models utilising Amazon Web Services' cloud platform to predict whether a flight would be delayed due to weather conditions. The focus was on flights departing from or arriving at the busiest domestic airports in the U.S., utilising historical flight and weather data to improve prediction accuracy.
+## Summary Report: Predicting Airplane Delays Using Machine Learning
 
-#### Dataset
+### Objective
+The goal of this project was to build machine learning models to predict whether a flight would be delayed due to weather conditions. The focus was on flights departing from or arriving at the busiest domestic airports in the U.S., leveraging historical flight and weather data to enhance customer experience by providing delay predictions during flight bookings.
+
+### Dataset
 The dataset, provided by the Bureau of Transportation Statistics (BTS), consisted of detailed flight performance data for domestic U.S. flights from 2014 to 2018. The dataset contained features such as flight schedules, distances, origins, destinations, airlines, and weather information. Two combined datasets were created:
+- **Dataset v1**: Contained core flight details.
+- **Dataset v2**: Expanded dataset including additional weather and holiday information.
 
-1 Dataset v1: Contained core flight details.
-2 Dataset v2: Expanded dataset including additional weather and holiday information.
 Both datasets had an imbalance in the target variable:
-
 - 79% of flights were "No Delay" (class 0).
 - 21% were "Delay" (class 1).
 
-
-#### Methodology
+### Methodology
 The project was implemented in Amazon SageMaker using the following steps:
 
-1. Data Preparation:
+#### Data Preparation
 - Loaded datasets and verified integrity.
 - Split the data into training (70%), validation (15%), and testing (15%) sets.
 - Stratified splits ensured balanced representation of the target variable across subsets.
-- 
-2. Model Building:
-- Linear Learner Model: Built a binary classification model using AWS's linear learner. The mini-batch size was increased to 1000 to improve training speed.
-- XGBoost Model: Developed an ensemble model optimized for binary classification with hyperparameters tuned for boosting rounds and evaluation using AUC.
 
-3. Evaluation Metrics:
-- Accuracy, precision, recall, F1-score, specificity, and AUC (Area Under the Curve) metrics were calculated for model evaluation.  
+#### Model Building
+- **Linear Learner Model**: Built a binary classification model using AWS's linear learner. The mini-batch size was increased to 1000 to improve training speed.
+- **XGBoost Model**: Developed an ensemble model optimized for binary classification with hyperparameters tuned for boosting rounds and evaluation using AUC.
+
+#### Evaluation Metrics
+- Accuracy, precision, recall, F1-score, specificity, and AUC (Area Under the Curve) metrics were calculated for model evaluation.
 - Confusion matrices and ROC curves were plotted to analyze performance.
 
-4. Threshold Adjustment:
+#### Threshold Adjustment
 - The default classification threshold (0.5) was reduced to 0.3 for the XGBoost model to improve recall for the minority class (delays).
 
-#### Results
-- **Linear Learner Model (v1 Dataset):**
-- Accuracy: 79.01%
-- Recall for delays: 0.13%
-- F1-score: 0.25%
-- AUC: 0.50
-- Model was biased towards the majority class ("No Delay"), failing to accurately predict delays.
+### Results
 
-- **XGBoost Model:**
-- Dataset v1:
-- Accuracy: 79.16%
-- Recall for delays: 1.67%
-- F1-score: 3.25%
-- AUC: 0.51
- 
-- Dataset v2:
-- Accuracy: 80.27%
-- Recall for delays: 11.97%
-- F1-score: 20.29%
-- AUC: 0.55
+#### Linear Learner Model (v1 Dataset)
+- **Accuracy**: 79.01%
+- **Recall for delays**: 0.13%
+- **F1-score**: 0.25%
+- **AUC**: 0.50
+- The model was biased towards the majority class ("No Delay"), failing to accurately predict delays.
+
+#### XGBoost Model
+- **Dataset v1**:
+  - **Accuracy**: 79.16%
+  - **Recall for delays**: 1.67%
+  - **F1-score**: 3.25%
+  - **AUC**: 0.51
+- **Dataset v2**:
+  - **Accuracy**: 80.27%
+  - **Recall for delays**: 11.97%
+  - **F1-score**: 20.29%
+  - **AUC**: 0.55
 - The inclusion of weather and holiday data significantly improved recall and overall predictive power.
-  
-- **Threshold Adjustment for XGBoost (v2 Dataset):**
-- 
-- Lowering the threshold to 0.3 improved recall for delays from 11.97% to 40.53%, albeit at the cost of overall accuracy (77.41%) and precision (45.70%). The F1-score improved to 42.96%, reflecting a better balance between precision and recall.
 
-#### Conclusions
-**Model Comparison:**
+#### Threshold Adjustment for XGBoost (v2 Dataset)
+- Lowering the threshold to 0.3 improved recall for delays from 11.97% to **40.53%**, albeit at the cost of overall accuracy (**77.41%**) and precision (**45.70%**). 
+- The F1-score improved to **42.96%**, reflecting a better balance between precision and recall.
 
+### Conclusions
+
+#### Model Comparison
 - XGBoost outperformed the linear learner model in all key metrics, particularly for predicting the minority class ("Delay").
 - Dataset v2 (with additional weather and holiday features) enhanced the model's predictive ability.
 
-**Key Trade-offs:**  
+#### Key Trade-offs
 - Adjusting the classification threshold from 0.5 to 0.3 drastically improved the recall for delays but reduced precision and overall accuracy. This trade-off highlights the importance of business context when optimizing classification thresholds.
 
-**Recommendations:**
+#### Recommendations
 - Further hyperparameter tuning, including grid search, could improve model performance, though it requires extended processing time.
 - Additional features, such as airport-specific congestion data or real-time weather updates, could further enhance prediction accuracy.
 - Future work could explore alternative ensemble models or deep learning approaches for better handling class imbalances.
 
-#### Impact
+### Impact
 This project demonstrated the potential of machine learning in identifying flight delays due to weather conditions. While further improvements are necessary for real-world deployment, the insights gained establish a foundation for developing robust predictive tools for the airline industry. This project was also an excellent introduction in using AWS Sagemaker.
