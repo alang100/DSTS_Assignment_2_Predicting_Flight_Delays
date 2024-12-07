@@ -49,7 +49,8 @@ This describes the instructions for running this code on other machines. It shou
 
 ---
 
-## Summary Report of Part B: Using AWS Sagemaker to Predict Airplane Delays Using Machine Learning Techniques
+## Part B
+### Summary Report of Part B: Using AWS Sagemaker to Predict Airplane Delays Using Machine Learning Techniques
 
 Provided here is a summary of the project for easy reference. Refer to the generated [Part B - oncloud.html](Part%20B%20-%20oncloud.html) report for more details.
 
