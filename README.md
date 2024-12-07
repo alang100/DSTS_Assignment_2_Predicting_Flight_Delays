@@ -1,4 +1,4 @@
-# DSTS_Assignment_2_Predicting_Flight_Delays
+# Predicting Flight Delays
 
 ## DSTS Final Project
 
@@ -50,7 +50,7 @@ To run the code for Part B on AWS is straight forward.
 First you must have an AWS account.
 Log into AWS. 
 
-**Accesse the AWS Management Console**  
+**Access the AWS Management Console**  
 1.	At the top of these instructions, choose Start Lab to launch your lab. A Start Lab panel opens, which displays the lab status.
 2.	Wait until you see the message Lab status: ready, then close the Start Lab panel by choosing the X.
 3.	At the top of these instructions, choose AWS. This will open the AWS Management Console in a new browser tab. The system will automatically log you in.
