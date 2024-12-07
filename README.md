@@ -5,7 +5,7 @@
 This project consists of the following files:
 1. Part A - onpremises.ipynb
 2. [Part B - oncloud.ipynb](Part%20B%20-%20AWS%20oncloud%20code.ipynb)  Note. This is the code that was written, but it does not contain the output. 
-3. Part B output of the code run on AWS Sagemaker. [Part B - oncloud.html](Part%20B%20-%20oncloud.html)
+3. [Part B - oncloud.html](Part%20B%20-%20oncloud.html) output and report of the code run on AWS Sagemaker.
 4. A tableau dashboard was made for this project which is available on the following link: https://public.tableau.com/app/profile/alan.gaugler/viz/DSTS_2/Delays?publish=yes
 
 ### Part A
