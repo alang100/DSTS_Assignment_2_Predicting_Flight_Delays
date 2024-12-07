@@ -44,32 +44,14 @@ https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&statio
 This consists of weather data from the weather stations nearest to the 9 busiest airports during the period of the flight data. In this case January 2014 to December 2018. If you are running this program for a different period of time, please collect the weather data for the appropriate period and site locations from the same website.
 This describes the instructions for running this code on other machines. It should be very simple to execute.
  
-### Part B
 
-To run the code for Part B on AWS is straight forward.
-First you must have an AWS account.
-Log into AWS. 
-
-**Access the AWS Management Console**  
-1.	At the top of these instructions, choose Start Lab to launch your lab. A Start Lab panel opens, which displays the lab status.
-2.	Wait until you see the message Lab status: ready, then close the Start Lab panel by choosing the X.
-3.	At the top of these instructions, choose AWS. This will open the AWS Management Console in a new browser tab. The system will automatically log you in.
-4.	Arrange the AWS Management Console browser tab so that it displays next to these instructions. Ideally, you should be able to see both browser tabs at the same time, which can make it easier to follow the lab steps.
-5.	To open JupyterLab: On the AWS Management Console, on the Services menu, choose Amazon SageMaker.
-6.	From the navigation menu on the left, expand the Notebook section and choose Notebook instances.
-7.	Click the orange ‘Create notebook instance’ button. Name the notebook. Select the instance type of ‘ml.m4.xlarge’ or better if you have sufficient resources.
-8.	Open the additional configuration arrow and change Volume Size in GB to 25 (GB). Scroll down and click the orange ‘Create notebook instance button’.
-9.	Under notebook instances you will see its status is ‘pending’. Once it changes to ‘InService’, on the right click the link ‘Open JupyterLab’.
-10.	Wait for Jupyter lab to open. When it is opened click the upload button and select the ‘Part B - oncloud.ipynb’ from your hard drive as well as the two csv files that were created after executing part A. They are 'combined_csv_v1.csv' and 'combined_csv_v1.csv'. It will be faster to zip them up and unzip them in the Jupyterlab environment.
-11.	Ensure the two CSV files are unzipped and placed in the default directory ‘SageMaker’
-12.	Open the notebook and execute the code
 
 ---
 
-## Summary Report: Predicting Airplane Delays Using Machine Learning
+## Summary Report of Part B: Using AWS Sagemaker to Predict Airplane Delays Using Machine Learning Techniques
 
 ### Objective
-The goal of this project was to build machine learning models to predict whether a flight would be delayed due to weather conditions. The focus was on flights departing from or arriving at the busiest domestic airports in the U.S., leveraging historical flight and weather data to enhance customer experience by providing delay predictions during flight bookings.
+The goal of Part B of this project was to build machine learning models to predict whether a flight would be delayed due to weather conditions. The focus was on flights departing from or arriving at the busiest domestic airports in the U.S., leveraging historical flight and weather data to enhance customer experience by providing delay predictions during flight bookings.
 
 ### Dataset
 The dataset, provided by the Bureau of Transportation Statistics (BTS), consisted of detailed flight performance data for domestic U.S. flights from 2014 to 2018. The dataset contained features such as flight schedules, distances, origins, destinations, airlines, and weather information. Two combined datasets were created:
@@ -140,4 +122,6 @@ The project was implemented in Amazon SageMaker using the following steps:
 - Future work could explore alternative ensemble models or deep learning approaches for better handling class imbalances.
 
 ### Impact
-This project demonstrated the potential of machine learning in identifying flight delays due to weather conditions. While further improvements are necessary for real-world deployment, the insights gained establish a foundation for developing robust predictive tools for the airline industry. This project was also an excellent introduction in using AWS Sagemaker.
+This project demonstrated the potential of machine learning in identifying flight delays due to weather conditions. While further improvements are necessary for real-world deployment, the insights gained establish a foundation for developing robust predictive tools for the airline industry. 
+
+This project also provided me with excellent experience in utilizing AWS Sagemaker.
