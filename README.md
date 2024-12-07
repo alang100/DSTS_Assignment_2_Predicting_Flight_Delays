@@ -3,10 +3,11 @@
 ## DSTS Final Project
 
 This project consists of the following files:
-1. Part A - onpremises.ipynb
-2. [Part B - oncloud.ipynb](Part%20B%20-%20AWS%20oncloud%20code.ipynb)  Note. This is the code that was written, but it does not contain the output. 
-3. [Part B - oncloud.html](Part%20B%20-%20oncloud.html) output and report of the code run on AWS Sagemaker.
-4. A tableau dashboard was made for this project which is available on the following link: https://public.tableau.com/app/profile/alan.gaugler/viz/DSTS_2/Delays?publish=yes
+1. [Part A - onpremises.ipynb](Part%20A%20-%20Predicting%20Flight%20Delays.ipynb) code with output.
+2. [Part A - onpremises.html](Part%20A%20-%20Predicting%20Flight%20Delays.html) code with output as a HTML file.
+3. [Part B - oncloud.ipynb](Part%20B%20-%20AWS%20oncloud%20code.ipynb)  Note. This is the code that was written, but it does not contain the output. 
+4. [Part B - oncloud.html](Part%20B%20-%20oncloud.html) output and report of the code run on AWS Sagemaker.
+5. A tableau dashboard was made for this project which is available on the following link: https://public.tableau.com/app/profile/alan.gaugler/viz/DSTS_2/Delays?publish=yes
 
 ### Part A
 
