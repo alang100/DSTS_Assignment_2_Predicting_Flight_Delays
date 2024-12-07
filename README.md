@@ -25,7 +25,7 @@ To run it, the following packages must be installed in your environment.
 * Pandas
 * Numpy
 * Matplotlib
-* Seaborn
+* Seaborn  
 Other libraries must also be imported. These are part of the Python installation and will be imported upon executing the code.
 
 Running the code is straightforward.
