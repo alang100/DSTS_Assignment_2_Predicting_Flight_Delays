@@ -17,53 +17,19 @@ This project consists of the following files:
 4. [Part B - oncloud.html](Part%20B%20-%20oncloud.html) output and report of the code run on AWS Sagemaker.
 5. [Flights Stats Tableau Dashboard](https://public.tableau.com/app/profile/alan.gaugler/viz/DSTS_2/Delays?publish=yes) highligthing several visualations of the flight data
 
-## Part A
 
-The dataset used for this project is a zip file of 60 zip files. Each of these 60 zip files contain flight data of US domestics flight for each month in the 5 year period from January 2014 to December 2018. Included are the following files:
-1. A CSV file containing all the flight information in the US for a one-month period. This will contain several hundred thousand rows for each flight and 109 variables. Many of these variables are partially or mostly empty.
-2. A ‘readme.html’ file which consists of the field names and a brief description of them.
-The flight data for this project was made available at the following site. Permissions will be required to access it. The entire dataset is 1.5 GB in size, so it cannot be uploaded here.
+## Part A  
+### Summary Report: Predicting Flight Delays (Part A)
 
-Similar data can be collected at the Bureau of Transportation Statistics at the following link:
-https://www.transtats.bts.gov/
-
-The ‘onpremises.ipynb’ file can be downloaded from this repository and run on any personal computer with a notebook installed. This file was run and modified on Jupyterlab in the Anaconda environment in Windows 11 but can be run in any other notebook environment.
-To run it, the following packages must be installed in your environment.
-* Pathlib
-* Zipfile
-* Pandas
-* Numpy
-* Matplotlib
-* Seaborn
-
-Other libraries must also be imported. These are part of the Python installation and will be imported upon executing the code.
-
-Running the code is straightforward.
-Place the code in your desired working directory and confirm the working directory is set to where the code is placed. 
-A subfolder called ‘zipped_flight_data’ needs to be created. 
-All the zip files for each month (described above) need to be placed within this folder. 
-Executing this program will create a new sub folder ‘flight_data’ in the working directory and place all the unzipped CSV files into this folder as well as one unzipped ‘readme.html’ file. 
-Three files will be created from this program and placed into the working directory.
-1. ‘combined_files.csv’ – This consists of the 20 most important variables for modelling for this dataset which is filtered for the 9 busiest origination and destination airports and the 5 most popular airlines.
-2. 'combined_csv_v1.csv' – This is a modification of the dataset and the file ‘combined_files.csv’ in which all the categorical features are one-hot encoded, so it consists of many more columns. 
-3. 'combined_csv_v2.csv' – This is similar to 'combined_csv_v1.csv', however the weather data for each date at the airport has been added. Collecting this weather data is described below.
-
-Weather data must be downloaded from the following site:
-https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=USW00023174,USW00012960,USW00003017,USW00094846,USW00013874,USW00023234,USW00003927,USW00023183,USW00013881&dataTypes=AWND,PRCP,SNOW,SNWD,TAVG,TMIN,TMAX&startDate=2014-01-01&endDate=2018-12-31.
-This consists of weather data from the weather stations nearest to the 9 busiest airports during the period of the flight data. In this case January 2014 to December 2018. If you are running this program for a different period of time, please collect the weather data for the appropriate period and site locations from the same website.
-This describes the instructions for running this code on other machines. It should be very simple to execute.
- 
-# Summary Report: Predicting Flight Delays (Part A)
-
-## Objective
+#### Objective
 The objective of Part A was to develop machine learning models to predict flight delays at major U.S. airports based on historical data. Looking at the information of all flights available for each month, it is clear to note that there is a lot of information available with 1.5 GB of flight information across several years (2014 to 2018). There are several variables about each flight for many airlines across the entire nation (USA).
 Flight delays are influenced by many variables including, gate and runway congestion, air traffic, maintenance and weather. These will vary from airport to airport. The busiest airports such as Chicago O'Hare and Atlanta may have more flight delays due to congestion and airports in the north of the country may have more flight delays of cancellations due to weather conditions such as snow. The objective of this problem is to predict if a flight will be delayed by 15 minutes or more. Machine learning is well suited to predicting this for the reasons described above. A lot of data across the entire nation and a lot of detailed information about the flights (features or variables) ensure that machine learning can be applied to this problem.
 
 **Business Problem**  
 Stakeholders in the airline industry can identify where and when the most delays take place by applying machine learning to predict the delays based on the historical data. Knowing where and when the delays take places, the airports and airlines can investigate further what causes these delays and can focus in these areas to improve their processes and methods to improve flight delays in these areas. This will be a better outcome for their customers (passengers and freight companies) which will ultimately help in retaining their customer base or increasing it with better service. This will of course improve their profitability.
 
-## Methodology
-### Data Preparation
+### Methodology
+#### Data Preparation
 - **Source Data:**
   - Historical flight performance data from the Bureau of Transportation Statistics, covering domestic flights in the U.S. from 2014 to 2018.
 - **Feature Engineering:**
@@ -84,13 +50,13 @@ Stakeholders in the airline industry can identify where and when the most delays
   - Observed correlations between weather variables (e.g., high precipitation or wind speed) and flight delays.
 - **Visualization:**
   - Created several bar charts and other visualizations to understand the distribution of delays across airports, times, and weather conditions.
-  - Highlighted key differences in delay rates between large hub airports and smaller regional ones.
+  - Highlighted key differences in delay rates between large hub airports and smaller regional ones. These can also be seen in the [Flights Stats Tableau Dashboard](https://public.tableau.com/app/profile/alan.gaugler/viz/DSTS_2/Delays?publish=yes).
 
 ### Model Development
 1. **Baseline Model:**
    - Logistic regression was used to establish a baseline for predicting delays.
    - Key metrics such as accuracy, recall, and precision revealed the limitations of a linear model in handling the complexity of the dataset.
-2. **Advanced Models:**
+2. **Enhanced Models:**
    - Another Logistic Regression model and a Random Forest model were developed utilizing the weathwer and holiday data to improve performance over the baseline model.
 3. **Evaluation Strategy:**
    - The dataset was split into training (80%), and testing (20%) subsets.
@@ -150,10 +116,10 @@ Stakeholders in the airline industry can identify where and when the most delays
 
 5. **Key Learnings:**
    - Addressing class imbalance is critical, especially when predicting the minority class is vital for business outcomes.
-   - Good data preparation, including feature engineering and scaling, is often more impactful than choosing the most advanced model.
-   - Machine learning is an iterative process, requiring multiple rounds of experimentation, fine-tuning, and feature enhancement to achieve desired results.
+   - Good data preparation, including feature engineering and scaling, is often more important than choosing the most advanced model.
+   - Machine learning is an iterative process, requiring multiple rounds of experimentation, fine-tuning, and feature engineering to achieve improved results.
 
-In conclusion, while the Random Forest model showed promise with a significantly improved recall, further iterations with additional feature engineering, balancing techniques, and model tuning are essential to meet the business goal of accurately predicting flight delays.
+In conclusion, while the Random Forest model showed the most promise with a significantly improved recall, further iterations with additional feature engineering, balancing techniques, and model tuning are essential to meet the business goal of accurately predicting flight delays.
 
 ---
 
