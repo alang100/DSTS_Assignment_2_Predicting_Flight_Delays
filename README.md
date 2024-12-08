@@ -53,7 +53,107 @@ https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&statio
 This consists of weather data from the weather stations nearest to the 9 busiest airports during the period of the flight data. In this case January 2014 to December 2018. If you are running this program for a different period of time, please collect the weather data for the appropriate period and site locations from the same website.
 This describes the instructions for running this code on other machines. It should be very simple to execute.
  
+# Summary Report: Predicting Flight Delays (Part A)
 
+## Objective
+The objective of Part A was to develop machine learning models to predict flight delays at major U.S. airports based on historical data. Looking at the information of all flights available for each month, it is clear to note that there is a lot of information available with 1.5 GB of flight information across several years (2014 to 2018). There are several variables about each flight for many airlines across the entire nation (USA).
+Flight delays are influenced by many variables including, gate and runway congestion, air traffic, maintenance and weather. These will vary from airport to airport. The busiest airports such as Chicago O'Hare and Atlanta may have more flight delays due to congestion and airports in the north of the country may have more flight delays of cancellations due to weather conditions such as snow. The objective of this problem is to predict if a flight will be delayed by 15 minutes or more. Machine learning is well suited to predicting this for the reasons described above. A lot of data across the entire nation and a lot of detailed information about the flights (features or variables) ensure that machine learning can be applied to this problem.
+
+**Business Problem**  
+Stakeholders in the airline industry can identify where and when the most delays take place by applying machine learning to predict the delays based on the historical data. Knowing where and when the delays take places, the airports and airlines can investigate further what causes these delays and can focus in these areas to improve their processes and methods to improve flight delays in these areas. This will be a better outcome for their customers (passengers and freight companies) which will ultimately help in retaining their customer base or increasing it with better service. This will of course improve their profitability.
+
+## Methodology
+### Data Preparation
+- **Source Data:**
+  - Historical flight performance data from the Bureau of Transportation Statistics, covering domestic flights in the U.S. from 2014 to 2018.
+- **Feature Engineering:**
+  - **Time Features:** Extracted variables such as the day of the week, month, and quarter to analyze seasonal trends.
+  - **Weather Data:** Enriched flight data with metrics such as snow, precipitation, average wind speed, and temperature for origin and destination airports.
+  - **Holiday Data:** Added features indicating proximity to major U.S. holidays.
+  - **Flight Metrics:** Included variables such as flight distance, departure hour, and arrival hour.
+- **Data Cleaning:**
+  - Removed duplicate and inconsistent records.
+  - Handled missing values by imputation where necessary or removing rows/columns with excessive gaps.
+- **Class Balancing:**
+  - Highlighted a significant imbalance in the target variable, with "No Delay" accounting for 79% of the data and "Delay" for 21%.
+  - Oversampling and undersampling techniques were considered but not fully applied in this project due to the limited timeframe.
+
+### Exploratory Data Analysis (EDA)
+- **Trends and Correlations:**
+  - Identified patterns such as increased delays during peak travel times (e.g., holidays and weekends).
+  - Observed correlations between weather variables (e.g., high precipitation or wind speed) and flight delays.
+- **Visualization:**
+  - Created several bar charts and other visualizations to understand the distribution of delays across airports, times, and weather conditions.
+  - Highlighted key differences in delay rates between large hub airports and smaller regional ones.
+
+### Model Development
+1. **Baseline Model:**
+   - Logistic regression was used to establish a baseline for predicting delays.
+   - Key metrics such as accuracy, recall, and precision revealed the limitations of a linear model in handling the complexity of the dataset.
+2. **Advanced Models:**
+   - Another Logistic Regression model and a Random Forest model were developed utilizing the weathwer and holiday data to improve performance over the baseline model.
+3. **Evaluation Strategy:**
+   - The dataset was split into training (80%), and testing (20%) subsets.
+   - Stratified splits ensured the class imbalance was preserved across subsets.
+   - Metrics such as accuracy, precision, recall, F1-score, and AUC-ROC were used to evaluate performance, with a particular focus on recall for the "Delay" class to prioritize identifying delayed flights.
+
+### Results
+
+#### Logistic Regression Model 1:
+- **Performance Overview:**
+  - **Accuracy:** 79.02%, primarily reflecting the "No Delay" majority class.
+  - **Recall for Delays:** Extremely low at 0.33%, indicating poor identification of delayed flights.
+  - **Precision:** 54.07%, showing moderate reliability when predicting delays.
+  - **F1-Score:** 0.65%, reflecting poor balance between precision and recall.
+  - **AUC:** 0.50, equivalent to random guessing, confirming poor performance.
+
+
+#### Logistic Regression Model 2 (with additional features):
+- **Performance Overview:**
+  - **Accuracy:** 78.99%, similar to Model 1.
+  - **Recall for Delays:** Improved significantly to 4.18%.
+  - **Precision:** Slightly lower at 49.57%.
+  - **F1-Score:** Increased to 7.70%, reflecting better balance between precision and recall.
+  - **AUC:** Slightly improved to 0.52, showing marginal gains in class separation.
+
+#### Random Forest Model:
+- **Performance Overview:**
+  - **Accuracy:** 80.99%, the highest among the three models.
+  - **Recall for Delays:** Increased substantially to 26.34%, showing the model's improved ability to identify delays.
+  - **Precision:** Reached 60.89%.
+  - **F1-Score:** Improved to 36.78%, indicating a better balance between precision and recall.
+  - **AUC:** 0.61, reflecting enhanced separation of delayed and non-delayed flights.
+  - Despite overfitting on the training data, the Random Forest model significantly outperformed the logistic regression models on the test set.
+
+
+### Conclusion
+
+1. **Model Performance:**
+   - All three models struggled to predict delays effectively due to severe class imbalance, with predictions heavily skewed toward the "No Delay" majority class. 
+   - The **Random Forest model** delivered the best performance, significantly improving recall and F1-score while maintaining the highest accuracy. However, the improvement came with signs of overfitting on the training data.
+
+2. **Feature Engineering Impact:**
+   - Adding features like weather conditions, holidays, and departure hour data led to noticeable improvements in identifying delays. Holidays and extreme weather conditions (e.g., heavy snow or rain) were particularly influential, as they are strongly correlated with delays.
+   - One-hot encoding of categorical features, including departure hour and airport variables, also contributed to the improvement in model performance.
+
+3. **Challenges:**
+   - The **severe class imbalance** made it difficult to predict the minority class ("Delay"), resulting in poor recall for delays in the first two models.
+   - Overfitting in the Random Forest model indicated the need for better regularization and model tuning.
+   - Limited time for exploring advanced modeling techniques and hyperparameter optimization further constrained the potential performance.
+
+4. **Future Steps:**
+   - **Class Imbalance Techniques:** Implement SMOTE or similar oversampling methods to balance the dataset, enabling the model to prioritize both classes equally.
+   - **Feature Enhancements:** Add more granular features, such as real-time weather updates, airport congestion levels, and operational disruptions (e.g., maintenance or construction activities).
+   - **Advanced Models:** Experiment with models like Gradient Boosting Machines, Support Vector Machines, and Neural Networks to better capture non-linear relationships in the data.
+   - **Hyperparameter Tuning:** Perform grid search or randomized search to optimize the models' configurations.
+   - **Regularization:** Apply techniques to reduce overfitting in the Random Forest model, such as limiting tree depth or increasing the minimum samples per leaf.
+
+5. **Key Learnings:**
+   - Addressing class imbalance is critical, especially when predicting the minority class is vital for business outcomes.
+   - Good data preparation, including feature engineering and scaling, is often more impactful than choosing the most advanced model.
+   - Machine learning is an iterative process, requiring multiple rounds of experimentation, fine-tuning, and feature enhancement to achieve desired results.
+
+In conclusion, while the Random Forest model showed promise with a significantly improved recall, further iterations with additional feature engineering, balancing techniques, and model tuning are essential to meet the business goal of accurately predicting flight delays.
 
 ---
 
