@@ -17,6 +17,7 @@ This project consists of the following files:
 4. [Part B - oncloud.html](Part%20B%20-%20oncloud.html) output and report of the code run on AWS Sagemaker.
 5. [Flights Stats Tableau Dashboard](https://public.tableau.com/app/profile/alan.gaugler/viz/DSTS_2/Delays?publish=yes) highligthing several visualations of the flight data
 
+---
 
 ## Part A  
 ### Summary Report: Predicting Flight Delays (Part A)
