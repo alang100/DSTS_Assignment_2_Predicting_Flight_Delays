@@ -10,7 +10,8 @@ This project focused on forecasting flight delays at major U.S. airports and was
 
 By combining on-premises development with cloud-based solutions, the project showcased a comprehensive approach to solving real-world machine learning problems. The use of SageMaker enabled scalable model training, efficient resource utilization, and streamlined evaluation in a production-ready environment.
 
-This project consists of the following files:
+This project consists of the following files:  
+*Note: To download a file, click the link and then use the download button on the top right of the GitHub interface.*
 1. [Part A - onpremises.ipynb](Part%20A%20-%20Predicting%20Flight%20Delays.ipynb) code with output.
 2. [Part A - onpremises.html](Part%20A%20-%20Predicting%20Flight%20Delays.html) code with output as a HTML file.
 3. [Part B - oncloud.ipynb](Part%20B%20-%20AWS%20oncloud%20code.ipynb)  Note. This is the code that was written, but it does not contain the output. 
